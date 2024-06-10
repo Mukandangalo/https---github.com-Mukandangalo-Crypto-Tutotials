@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Election Voting System</title>
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      #voting-form {
+        margin-bottom: 20px;
+      }
+
+      #voting-form label {
+        font-weight: bold;
+      }
+
+      #voting-form select {
+        margin-right: 10px;
+      }
+
+      #voting-results {
+        border-top: 2px solid #ccc;
+        padding-top: 20px;
+      }
+
+      #results-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      #results-list li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>University Election Voting System</h1>
+      <div id="voting-form">
+        <label for="candidate-select">Choose Candidate:</label>
+        <select id="candidate-select">
+          <option value="Candidate1">Candidate A</option>
+          <option value="Candidate2">Candidate B</option>
+          <option value="Candidate3">Candidate C</option>
+          <option value="Candidate4">Candidate D</option>
+          <option value="Candidate5">Candidate E</option>
+        </select>
+        <button onclick="submitVote()">Submit Vote</button>
+      </div>
+      <div id="voting-results">
+        <h2>Current Voting Results</h2>
+        <ul id="results-list">
+          <!-- Voting results will be dynamically populated here -->
+        </ul>
+      </div>
+    </div>
+    <script>
+      // Function to submit a vote
+      function submitVote() {
+        var candidateSelect = document.getElementById("candidate-select");
+        var selectedCandidate = candidateSelect.value;
+
+        // Send the selected candidate to the server (you need to implement this)
+        // Example:
+        // fetch('/submit-vote', {
+        //     method: 'POST',
+        //     body: JSON.stringify({ candidate: selectedCandidate }),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     // Handle response (e.g., display success message)
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        // });
+
+        // For now, just log the selected candidate
+        console.log("Vote submitted for Candidate " + selectedCandidate);
+      }
+
+      // Function to fetch and display voting results
+      function displayResults() {
+        // Fetch voting results from the server (you need to implement this)
+        // Example:
+        // fetch('/voting-results')
+        // .then(response => response.json())
+        // .then(data => {
+        //     // Update UI with voting results
+        //     var resultsList = document.getElementById("results-list");
+        //     resultsList.innerHTML = "";
+        //     data.forEach(result => {
+        //         var listItem = document.createElement("li");
+        //         listItem.textContent = result.candidate + ": " + result.votes;
+        //         resultsList.appendChild(listItem);
+        //     });
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        // });
+
+        // For now, just display dummy results
+        var dummyResults = [
+          { candidate: "Candidate A", votes: 2 },
+          { candidate: "Candidate B", votes: 2 },
+          { candidate: "Candidate C", votes: 5 },
+          { candidate: "Candidate D", votes: 6 },
+          { candidate: "Candidate E", votes: 3 },
+        ];
+
+        // Update UI with dummy results
+        var resultsList = document.getElementById("results-list");
+        resultsList.innerHTML = "";
+        dummyResults.forEach((result) => {
+          var listItem = document.createElement("li");
+          listItem.textContent = result.candidate + ": " + result.votes;
+          resultsList.appendChild(listItem);
+        });
+      }
+
+      // Display voting results when the page loads
+      displayResults();
+    </script>
+  </body>
+</html>

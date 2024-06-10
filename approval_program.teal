@@ -1,0 +1,62 @@
+#pragma version 3
+txn ApplicationID
+int 0
+==
+bnz main_l4
+txn ApplicationID
+int 0
+!=
+bnz main_l3
+err
+main_l3:
+txna ApplicationArgs 0
+byte "Candidate1"
+==
+txna ApplicationArgs 0
+byte "Candidate2"
+==
+||
+txna ApplicationArgs 0
+byte "Candidate3"
+==
+||
+txna ApplicationArgs 0
+byte "Candidate4"
+==
+||
+txna ApplicationArgs 0
+byte "Candidate5"
+==
+||
+assert
+txna ApplicationArgs 0
+txna ApplicationArgs 0
+app_global_get
+int 1
++
+app_global_put
+txna ApplicationArgs 0
+app_global_get
+int 20
+<
+assert
+int 1
+return
+main_l4:
+byte "Candidate1"
+int 0
+app_global_put
+byte "Candidate2"
+int 0
+app_global_put
+byte "Candidate3"
+int 0
+app_global_put
+byte "Candidate4"
+int 0
+app_global_put
+byte "Candidate5"
+int 0
+app_global_put
+int 1
+return
